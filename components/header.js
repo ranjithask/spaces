@@ -1,9 +1,10 @@
 import React from 'react';
+import '../style/header.css';
 
 const Header = () => {
     return (
-        <div>
-            <h4>SpaceX Launch Progarm</h4>
+        <div className='header'>
+            <h4>SpaceX Launch Program</h4>
         </div>
     )
 };

@@ -1,8 +1,8 @@
 import React,{useState} from 'react';
-import './style/index.css';
-import Header from './header.js';
-import buttons from './buttons.json';
 import 'lazysizes';
+import Header from '../components/header.js';
+import buttons from '../configuration/buttons.json';
+import '../style/index.css';
 
 const Index = (props) => {
 
@@ -69,9 +69,9 @@ const Index = (props) => {
     }
 
     return (
+        <>
+        <Header/>
         <div className="grid-container">
-            <Header/>
-            <br/>
             <div className="grid-container1">
                 <div className="grid-item1">
                     <h2>Filter</h2>
@@ -81,7 +81,7 @@ const Index = (props) => {
                             {
                                 buttons.buttonItem.map((groupedButton) => {       
                                     return (
-                                        <div className="column">
+                                        <div className="column" key={groupedButton.b_id}>
                                             <button className="buttons" value={groupedButton.b_value} onClick={e => filterByYear(e.target.value)} key={groupedButton.b_id}>{groupedButton.b_name} </button>
                                         </div>
                                     )
@@ -90,13 +90,13 @@ const Index = (props) => {
                         </div>
                         <p>Sucessful launch</p>
                         <div className="row">
-                            <div className="column"><button className="buttons" onClick={showSucessfulLaunch}>true</button></div>
-                            <div className="column"><button className="buttons" onClick={showfalseLaunch}>false</button></div>
+                            <div className="column"><button className="buttons" onClick={showSucessfulLaunch}>Yes</button></div>
+                            <div className="column"><button className="buttons" onClick={showfalseLaunch}>No</button></div>
                         </div>
                         <p>Sucessful landing</p>
                         <div className="row">
-                            <div className="column"><button className="buttons" onClick={showSucessfulLanding}>true</button></div>
-                            <div className="column"><button className="buttons" onClick={showfalseLand}>false</button></div>
+                            <div className="column"><button className="buttons" onClick={showSucessfulLanding}>Yes</button></div>
+                            <div className="column"><button className="buttons" onClick={showfalseLand}>No</button></div>
                         </div>
                     </div>
                 </div>
@@ -111,8 +111,8 @@ const Index = (props) => {
                                     <h2>{spaceData.mission_name}</h2>
                                     <h6>Mission Ids: {spaceData.mission_id}</h6>
                                     <h6>Launch Year: {spaceData.launch_year}</h6>
-                                    <h6>successful Launch: {spaceData.launch_success? 'true' : 'false'}</h6>
-                                    <h6>successful Landing: {spaceData.rocket.first_stage.cores[0].land_success ? 'true' : false}</h6>
+                                    <h6>successful Launch: {spaceData.launch_success? 'Yes' : 'No'}</h6>
+                                    <h6>successful Landing: {spaceData.rocket.first_stage.cores[0].land_success ? 'Yes' : 'No'}</h6>
                                 </div>
                             </div>
                         )
@@ -120,7 +120,7 @@ const Index = (props) => {
                 }
             </div>
         </div>
-
+</>
     );
 }
 export const getStaticProps = async () => {
